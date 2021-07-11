@@ -51,6 +51,8 @@ import com.nusantara.support.colorpicker.ColorPickerPreference;
 import com.nusantara.support.preferences.SystemSettingListPreference;
 import com.nusantara.support.preferences.SystemSettingSwitchPreference;
 import com.nusantara.wings.UtilsNad;
+import com.android.settingslib.core.AbstractPreferenceController;
+import com.android.settingslib.core.lifecycle.Lifecycle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -704,4 +706,18 @@ public class Themes extends SettingsPreferenceFragment
                     return keys;
                 }
             };
+
+    @Override
+    protected List<AbstractPreferenceController> createPreferenceControllers(Context context) {
+        return buildPreferenceControllers(context, getSettingsLifecycle(), this);
+    }
+    private static List<AbstractPreferenceController> buildPreferenceControllers(
+            Context context, Lifecycle lifecycle, Fragment fragment) {
+        final List<AbstractPreferenceController> controllers = new ArrayList<>();
+        controllers.add(new OverlayCategoryPreferenceController(context,
+                "android.theme.customization.signal_icon"));
+        controllers.add(new OverlayCategoryPreferenceController(context,
+                "android.theme.customization.wifi_icon"));
+        return controllers;
+    }
 }

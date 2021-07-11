@@ -1104,4 +1104,10 @@
      <!-- ad-blocker -->
     <string name="hosts_block_title">Ad-block</string>
     <string name="hosts_block_summary">Block ads with a modified hosts file. Turn off to use third party solutions or if apps cause issues.</string>
+
+    <!-- Custom Signal bar icons -->
+    <string name="custom_signal_bar_title">Signal icons</string>
+
+    <!-- Custom Wi-Fi bar icons -->
+    <string name="custom_wifi_bar_title">Wi-Fi icon</string>
 </resources>
