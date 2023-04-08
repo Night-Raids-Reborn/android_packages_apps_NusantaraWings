@@ -73,6 +73,12 @@
         android:entries="@array/clock_date_format_entries_values"
         android:entryValues="@array/clock_date_format_entries_values"
         android:dependency="clock_date_display" />
+    
+    <com.nusantara.support.preferences.SystemSettingSwitchPreference
+        android:key="statusbar_clock_chip"
+        android:title="@string/status_bar_show_clock_bg"
+        android:dependency="status_bar_clock"
+        android:defaultValue="true" />
 
     <PreferenceCategory
         android:key="clock_style"

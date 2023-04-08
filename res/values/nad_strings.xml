@@ -442,6 +442,7 @@
     <string name="clock_date_right">Right of time</string>
     <string name="clock_date_left">Left of time</string>
     <string name="clock_date_position">Date position</string>
+    <string name="status_bar_show_clock_bg">Show clock background chip</string>
 
     <!-- Statusbar Clock Font Style, Size & Color -->
     <string name="clock_style_title">Clock style</string>

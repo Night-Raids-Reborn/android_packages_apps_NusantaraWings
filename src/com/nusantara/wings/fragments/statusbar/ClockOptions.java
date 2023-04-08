@@ -71,6 +71,7 @@ public class ClockOptions extends SettingsPreferenceFragment
     private static final String STATUS_BAR_CLOCK_COLOR = "status_bar_clock_color";
     private static final String STATUS_BAR_CLOCK_SIZE  = "status_bar_clock_size";
     private static final String STATUS_BAR_CLOCK_FONT_STYLE  = "status_bar_clock_font_style";
+    private static final String PREF_CLOCK_BG = "statusbar_clock_chip";
 
     static final int DEFAULT_STATUS_CLOCK_COLOR = 0xffffffff;
 
@@ -89,6 +90,7 @@ public class ClockOptions extends SettingsPreferenceFragment
     private ListPreference mClockFontStyle;
     private ColorPickerPreference mClockColor;
     private CustomSeekBarPreference mClockSize;
+    private SwitchPreference mStatusBarClockBG;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -120,6 +122,11 @@ public class ClockOptions extends SettingsPreferenceFragment
         mStatusBarClock.setOnPreferenceChangeListener(this);
 
         mStatusBarAmPm = (ListPreference) findPreference(STATUS_BAR_AM_PM);
+        mStatusBarClockBG = (SwitchPreference) findPreference(PREF_CLOCK_BG);
+        mStatusBarClockBG.setChecked((Settings.System.getInt(getActivity()
+                .getContentResolver(), Settings.System.STATUSBAR_CLOCK_CHIP, 1) == 1));
+        mStatusBarClockBG.setOnPreferenceChangeListener(this);
+
         if (DateFormat.is24HourFormat(getActivity())) {
             mStatusBarAmPm.setEnabled(false);
             mStatusBarAmPm.setSummary(R.string.status_bar_am_pm_info);
@@ -245,6 +252,11 @@ public class ClockOptions extends SettingsPreferenceFragment
                     Settings.System.STATUSBAR_CLOCK_DATE_STYLE, clockDateStyle);
             mClockDateStyle.setSummary(mClockDateStyle.getEntries()[index]);
             parseClockDateFormats();
+            return true;
+        } else if (preference == mStatusBarClockBG) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUSBAR_CLOCK_CHIP, value ? 1 : 0);
             return true;
         } else if (preference == mClockDateFormat) {
             int index = mClockDateFormat.findIndexOfValue((String) newValue);
