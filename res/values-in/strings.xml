@@ -19,4 +19,8 @@
     <!-- Ignore window secure -->
     <string name="ignore_window_secure_title">Ignore window secure flags</string>
     <string name="ignore_window_secure_summary">Ini menghilangkan batas tangkapan layar dan rekaman layar untuk semua aplikasi. Biasanya, aplikasi khusus diganti dengan area hitam dalam catatan. Ini bisa nyaman dalam beberapa kasus tetapi dapat menyebabkan kebocoran privasi. Setelah mengubah toggle ini, Anda mungkin perlu memulai ulang aplikasi agar perubahan diterapkan.</string>
+
+    <!-- ad-blocker -->
+    <string name="hosts_block_title">Blokir Iklan</string>
+    <string name="hosts_block_summary">Blokir iklan dengan file host yang dimodifikasi. Matikan untuk menggunakan solusi pihak ketiga atau jika app menyebabkan masalah.</string>
 </resources>

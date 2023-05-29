@@ -169,4 +169,10 @@
             android:title="@string/ignore_window_secure_title"
             android:summary="@string/ignore_window_secure_summary"
             android:defaultValue="false"/>
+
+    <com.nusantara.support.preferences.SystemPropSwitchPreference
+            android:key="persist.aicp.hosts_block"
+            android:title="@string/hosts_block_title"
+            android:summary="@string/hosts_block_summary"
+            android:defaultValue="false" />
 </PreferenceScreen>

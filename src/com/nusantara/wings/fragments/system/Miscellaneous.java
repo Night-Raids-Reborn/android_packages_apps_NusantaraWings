@@ -40,6 +40,9 @@ import com.android.settingslib.search.SearchIndexable;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.Handler;
+import java.net.InetAddress;
+
 import com.nusantara.support.preferences.CustomSeekBarPreference;
 import com.nusantara.support.preferences.SystemSettingMasterSwitchPreference;
 import com.nusantara.support.preferences.SecureSettingSwitchPreference;
@@ -62,7 +65,9 @@ public class Miscellaneous extends SettingsPreferenceFragment
     private static final String PREF_FLASH_ON_CALL_RATE = "flashlight_on_call_rate";
     private static final String START_PADDING= "statusbar_left_padding";
     private static final String END_PADDING= "statusbar_right_padding";
+    private static final String PREF_ADBLOCK = "persist.aicp.hosts_block";
 
+    private Handler mHandler = new Handler();
     private CustomSeekBarPreference mFlashOnCallRate;
     private CustomSeekBarPreference mCornerRadius;
     private CustomSeekBarPreference mContentPadding;
@@ -80,6 +85,7 @@ public class Miscellaneous extends SettingsPreferenceFragment
 
         final PreferenceScreen prefScreen = getPreferenceScreen();
         final ContentResolver resolver = getActivity().getContentResolver();
+        findPreference(PREF_ADBLOCK).setOnPreferenceChangeListener(this); 
 
         Preference mCutoutPref = (Preference) findPreference(PREF_KEY_CUTOUT);
         if (!hasPhysicalDisplayCutout(getContext()))
@@ -217,6 +223,16 @@ public class Miscellaneous extends SettingsPreferenceFragment
             int value = (Integer) newValue;
             Settings.System.putInt(resolver,
                     Settings.System.FLASHLIGHT_ON_CALL_RATE, value);
+            return true;
+        }  else if (PREF_ADBLOCK.equals(preference.getKey())) {
+            // Flush the java VM DNS cache to re-read the hosts file.
+            // Delay to ensure the value is persisted before we refresh
+            mHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        InetAddress.clearDnsCache();
+                    }
+            }, 1000);
             return true;
         }
         return false;
