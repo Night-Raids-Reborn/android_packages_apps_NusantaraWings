@@ -157,4 +157,16 @@
             android:max="50"
             android:min="-5" />
     </PreferenceCategory>
+
+    <com.nusantara.support.preferences.GlobalSettingSwitchPreference
+            android:key="pm_downgrade_allowed"
+            android:title="@string/app_downgrade_title"
+            android:summary="@string/app_downgrade_summary"
+            android:defaultValue="false"/>
+    
+    <com.nusantara.support.preferences.SecureSettingSwitchPreference
+            android:key="window_ignore_secure"
+            android:title="@string/ignore_window_secure_title"
+            android:summary="@string/ignore_window_secure_summary"
+            android:defaultValue="false"/>
 </PreferenceScreen>
