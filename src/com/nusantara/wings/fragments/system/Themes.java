@@ -38,6 +38,8 @@ import android.widget.Toast;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceScreen;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.internal.util.nad.NadUtils;
