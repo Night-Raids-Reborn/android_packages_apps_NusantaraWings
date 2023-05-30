@@ -710,7 +710,7 @@ public class Themes extends SettingsPreferenceFragment
                 }
             };
 
-    @Override
+
     protected List<AbstractPreferenceController> createPreferenceControllers(Context context) {
         return buildPreferenceControllers(context, getSettingsLifecycle(), this);
     }
